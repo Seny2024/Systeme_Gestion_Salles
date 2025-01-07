@@ -13,6 +13,14 @@
     <p>Total Reservations: ${totalReservations}</p>
     <a href="logout">Logout</a>
 
+    <nav>
+        <ul>
+            <li><a href="dashboard">Users</a></li>
+            <li><a href="rooms">Rooms</a></li>
+            <li><a href="reservations">Reservations</a></li>
+        </ul>
+    </nav>
+
     <h3>Add User</h3>
     <form action="addUser" method="post">
         <label for="username">Username:</label>
@@ -47,6 +55,7 @@
         </tbody>
     </table>
 
+    <!--
     <h3>Reservations List</h3>
     <table border="1">
         <thead>
@@ -68,6 +77,9 @@
         </c:forEach>
         </tbody>
     </table>
+
+     -->
+
 </div>
 </body>
 </html>

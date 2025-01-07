@@ -22,13 +22,27 @@ public class ReservationServlet extends HttpServlet {
     private ReservationService reservationService = new ReservationService();
     private RoomService roomService = new RoomService();
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("user");
-        List<Reservation> reservations = reservationService.getReservationsByUser(user.getId());
+        // Vérifiez si l'utilisateur est connecté
+        Object user = request.getSession().getAttribute("user");
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        // Récupérez toutes les réservations et toutes les salles
+        List<Reservation> reservations = reservationService.getAllReservations();
+        List<Room> rooms = roomService.getAllRooms();
+
         request.setAttribute("reservations", reservations);
-        request.getRequestDispatcher("reservations.jsp").forward(request, response);
+        request.setAttribute("totalReservations", reservations.size());
+        request.setAttribute("rooms", rooms);
+
+        request.getRequestDispatcher("/views/reservations.jsp").forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int roomId = Integer.parseInt(request.getParameter("roomId"));
         String reservationDateStr = request.getParameter("reservationDate");
@@ -42,7 +56,7 @@ public class ReservationServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        Room room = roomService.getAllRooms().stream().filter(r -> r.getId() == roomId).findFirst().orElse(null);
+        Room room = roomService.getRoomById(roomId);
         Reservation reservation = new Reservation();
         reservation.setRoom(room);
         reservation.setUser(user);

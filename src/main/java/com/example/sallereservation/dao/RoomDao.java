@@ -25,19 +25,10 @@ public class RoomDao {
         session.close();
     }
 
-    public void updateRoom(Room room) {
+    public Room getRoomById(int roomId) {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.update(room);
-        session.getTransaction().commit();
+        Room room = session.get(Room.class, roomId);
         session.close();
-    }
-
-    public void deleteRoom(Room room) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(room);
-        session.getTransaction().commit();
-        session.close();
+        return room;
     }
 }

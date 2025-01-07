@@ -3,7 +3,6 @@
   User: Seny
   Date: 05/01/2025
   Time: 22:37
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -13,10 +12,13 @@
 <head>
     <title>Reservations</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/validation.js"></script>
 </head>
 <body>
 <div class="reservations-container">
-    <h2>Reservations</h2>
+    <p>Total Reservations: ${totalReservations}</p>
+
+    <h2>Make a Reservation</h2>
     <form action="reservations" method="post" onsubmit="return validateReservationForm()">
         <label for="roomId">Room:</label>
         <select id="roomId" name="roomId" required>
@@ -24,22 +26,35 @@
                 <option value="${room.id}">${room.name}</option>
             </c:forEach>
         </select>
+
         <label for="reservationDate">Reservation Date:</label>
         <input type="date" id="reservationDate" name="reservationDate" required>
+
         <button type="submit">Make Reservation</button>
     </form>
-    <table>
+
+    <h2>Reservations List</h2>
+    <table border="1">
+        <thead>
         <tr>
+            <th>ID</th>
+            <th>User</th>
             <th>Room</th>
-            <th>Reservation Date</th>
+            <th>Date</th>
         </tr>
+        </thead>
+        <tbody>
         <c:forEach var="reservation" items="${reservations}">
             <tr>
+                <td>${reservation.id}</td>
+                <td>${reservation.user.username}</td>
                 <td>${reservation.room.name}</td>
                 <td>${reservation.reservationDate}</td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
+
     <a href="logout">Logout</a>
 </div>
 </body>

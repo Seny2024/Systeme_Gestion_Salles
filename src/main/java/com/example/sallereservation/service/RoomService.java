@@ -16,11 +16,7 @@ public class RoomService {
         roomDao.saveRoom(room);
     }
 
-    public void updateRoom(Room room) {
-        roomDao.updateRoom(room);
-    }
-
-    public void deleteRoom(Room room) {
-        roomDao.deleteRoom(room);
+    public Room getRoomById(int roomId) {
+        return roomDao.getRoomById(roomId);
     }
 }
