@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Dialecte MySQL pour Hibernate -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Driver JDBC MySQL -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- URL de connexion à MySQL via XAMPP -->
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/salle_reservation?useSSL=false&amp;serverTimezone=UTC</property>
+
+        <!-- Identifiants de connexion MySQL -->
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- Stratégie de gestion du schéma (mettre à jour la base de données) -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Affichage des requêtes SQL dans la console -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Mapping des classes Java -->
+        <mapping class="com.example.sallereservation.model.User"/>
+        <mapping class="com.example.sallereservation.model.Room"/>
+        <mapping class="com.example.sallereservation.model.Reservation"/>
+    </session-factory>
+</hibernate-configuration>
