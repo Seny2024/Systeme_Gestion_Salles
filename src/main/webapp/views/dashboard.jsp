@@ -10,12 +10,9 @@
 <body>
 <div class="dashboard-container">
     <h2>Dashboard</h2>
-    <p>Total Reservations: ${totalReservations}</p>
-    <a href="logout">Logout</a>
 
     <nav>
         <ul>
-            <li><a href="dashboard">Users</a></li>
             <li><a href="rooms">Rooms</a></li>
             <li><a href="reservations">Reservations</a></li>
         </ul>
@@ -80,6 +77,7 @@
 
      -->
 
+    <a href="logout">Logout</a>
 </div>
 </body>
 </html>

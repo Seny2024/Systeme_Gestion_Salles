@@ -13,9 +13,6 @@
     <br/>
     <ul>
         <li><a href="login">Se connecter</a></li>
-        <li><a href="dashboard">Tableau de Bord</a></li>
-        <li><a href="rooms">Gestion des Salles</a></li>
-        <li><a href="reservations">Réservations</a></li>
     </ul>
 </div>
 </body>

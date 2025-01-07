@@ -18,7 +18,7 @@
 <div class="reservations-container">
     <p>Total Reservations: ${totalReservations}</p>
 
-    <h2>Make a Reservation</h2>
+    <h2>Faire une réservation</h2>
     <form action="reservations" method="post" onsubmit="return validateReservationForm()">
         <label for="roomId">Room:</label>
         <select id="roomId" name="roomId" required>
@@ -30,7 +30,7 @@
         <label for="reservationDate">Reservation Date:</label>
         <input type="date" id="reservationDate" name="reservationDate" required>
 
-        <button type="submit">Make Reservation</button>
+        <button type="submit">Réserver</button>
     </form>
 
     <h2>Reservations List</h2>
