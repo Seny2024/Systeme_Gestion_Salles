@@ -41,4 +41,13 @@ public class ReservationDao {
         session.close();
         return reservations;
     }
+
+    public List<Reservation> getReservationsByRoom(int roomId) {
+        Session session = sessionFactory.openSession();
+        List<Reservation> reservations = session.createQuery("from Reservation where room.id = :roomId", Reservation.class)
+                .setParameter("roomId", roomId)
+                .list();
+        session.close();
+        return reservations;
+    }
 }

@@ -9,30 +9,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-//@WebServlet("/rooms")
-public class RoomServlet extends HttpServlet {
+@WebServlet("/editRoom")
+public class EditRoomServlet extends HttpServlet {
     private RoomService roomService = new RoomService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Room> rooms = roomService.getAllRooms();
-        request.setAttribute("rooms", rooms);
-        request.getRequestDispatcher("/views/rooms.jsp").forward(request, response);
+        int roomId = Integer.parseInt(request.getParameter("id"));
+        Room room = roomService.getRoomById(roomId);
+        request.setAttribute("room", room);
+        request.getRequestDispatcher("/views/editRoom.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int roomId = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int capacity = Integer.parseInt(request.getParameter("capacity"));
         String equipment = request.getParameter("equipment");
 
         Room room = new Room();
+        room.setId(roomId);
         room.setName(name);
         room.setCapacity(capacity);
         room.setEquipment(equipment);
 
-        roomService.saveRoom(room);
-        request.getSession().setAttribute("message", "Room added successfully.");
+        roomService.updateRoom(room);
+        request.getSession().setAttribute("message", "Room updated successfully.");
         response.sendRedirect("rooms");
     }
 }

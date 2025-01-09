@@ -31,4 +31,23 @@ public class RoomDao {
         session.close();
         return room;
     }
+
+    public void deleteRoom(int roomId) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Room room = session.get(Room.class, roomId);
+        if (room != null) {
+            session.delete(room);
+        }
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void updateRoom(Room room) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(room);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
