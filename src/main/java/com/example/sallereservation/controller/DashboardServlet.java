@@ -37,20 +37,5 @@ public class DashboardServlet extends HttpServlet {
 
         request.getRequestDispatcher("/views/dashboard.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRole(role);
-
-        userService.saveUser(user);
-
-        response.sendRedirect("dashboard");
-    }
+    
 }

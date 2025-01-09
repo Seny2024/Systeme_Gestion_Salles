@@ -6,10 +6,20 @@
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/validation.js"></script>
+    <script src="js/modal.js"></script>
 </head>
 <body>
 <div class="dashboard-container">
     <h2>Dashboard</h2>
+
+    <c:if test="${not empty message}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                showMessage("${message}");
+            });
+        </script>
+    </c:if>
 
     <nav>
         <ul>
@@ -39,6 +49,7 @@
             <th>ID</th>
             <th>Username</th>
             <th>Role</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -47,6 +58,10 @@
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.role}</td>
+                <td>
+                    <a href="editUser?id=${user.id}">Modifier</a>
+                    <a href="deleteUser?id=${user.id}">Supprimer</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -54,5 +69,9 @@
 
     <a href="logout">Logout</a>
 </div>
+
+<!-- Include message modal -->
+<jsp:include page="messageModal.jsp" />
+
 </body>
 </html>
