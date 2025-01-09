@@ -25,14 +25,20 @@ public class ReservationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Vérifiez si l'utilisateur est connecté
-        Object user = request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
-        // Récupérez toutes les réservations et toutes les salles
-        List<Reservation> reservations = reservationService.getAllReservations();
+        // Récupérez les réservations et les salles en fonction du rôle de l'utilisateur
+        List<Reservation> reservations;
+        if (user.getRole().equals("admin")) {
+            reservations = reservationService.getAllReservations();
+        } else {
+            reservations = reservationService.getReservationsByUser(user.getId());
+        }
+
         List<Room> rooms = roomService.getAllRooms();
 
         request.setAttribute("reservations", reservations);

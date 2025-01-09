@@ -1,5 +1,6 @@
 package com.example.sallereservation.util;
 
+import com.example.sallereservation.model.User;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -29,8 +30,23 @@ public class SecurityFilter implements Filter {
         }
 
         // Vérifier si l'utilisateur est connecté
-        if (httpRequest.getSession().getAttribute("user") == null) {
+        User user = (User) httpRequest.getSession().getAttribute("user");
+        if (user == null) {
             httpResponse.sendRedirect("login.jsp");
+            return;
+        }
+
+        // Vérifier le rôle de l'utilisateur pour certaines pages
+        if (requestURI.contains("addUser") && !user.getRole().equals("admin")) {
+            httpResponse.sendRedirect("accessDenied.jsp");
+            return;
+        }
+        if (requestURI.contains("editUser") && !user.getRole().equals("admin")) {
+            httpResponse.sendRedirect("accessDenied.jsp");
+            return;
+        }
+        if (requestURI.contains("deleteUser") && !user.getRole().equals("admin")) {
+            httpResponse.sendRedirect("accessDenied.jsp");
             return;
         }
 

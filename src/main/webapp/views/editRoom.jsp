@@ -17,18 +17,18 @@
 </head>
 <body>
 <div class="edit-room-container">
-    <h2>Edit Room</h2>
+    <h2>Modifier la salle</h2>
     <form action="editRoom" method="post" onsubmit="return validateRoomForm()">
         <input type="hidden" id="id" name="id" value="${room.id}">
-        <label for="name">Name:</label>
+        <label for="name">Nom:</label>
         <input type="text" id="name" name="name" value="${room.name}" required>
-        <label for="capacity">Capacity:</label>
+        <label for="capacity">Capacité:</label>
         <input type="number" id="capacity" name="capacity" value="${room.capacity}" required>
         <label for="equipment">Equipment:</label>
         <input type="text" id="equipment" name="equipment" value="${room.equipment}">
         <button type="submit">Update Room</button>
     </form>
-    <a href="rooms">Back to Rooms</a>
+    <a href="rooms">Retour</a>
 </div>
 </body>
 </html>

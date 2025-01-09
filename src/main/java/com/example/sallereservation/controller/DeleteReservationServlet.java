@@ -18,7 +18,7 @@ public class DeleteReservationServlet extends HttpServlet {
         int reservationId = Integer.parseInt(request.getParameter("id"));
         reservationService.deleteReservation(reservationService.getReservationById(reservationId));
 
-        request.getSession().setAttribute("message", "Reservation deleted successfully");
+        request.getSession().setAttribute("message", "Reservation supprimée avec succès !");
         response.sendRedirect("reservations");
     }
 }

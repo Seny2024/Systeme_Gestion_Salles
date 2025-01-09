@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="rooms-container">
-    <h2>Rooms</h2>
+    <h2>Salles</h2>
     <c:if test="${not empty message}">
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -26,22 +26,34 @@
             });
         </script>
     </c:if>
-    <form action="rooms" method="post" onsubmit="return validateRoomForm()">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="capacity">Capacity:</label>
-        <input type="number" id="capacity" name="capacity" required>
-        <label for="equipment">Equipment:</label>
-        <input type="text" id="equipment" name="equipment">
-        <button type="submit">Add Room</button>
-    </form>
+<c:choose>
+    <c:when test="${user.role eq 'admin'}">
+        <form action="rooms" method="post" onsubmit="return validateRoomForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="capacity">Capacity:</label>
+            <input type="number" id="capacity" name="capacity" required>
+            <label for="equipment">Equipment:</label>
+            <input type="text" id="equipment" name="equipment">
+            <button type="submit">Add Room</button>
+        </form>
+    </c:when>
+    <c:otherwise>
+    </c:otherwise>
+</c:choose>
     <table border="1">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Capacity</th>
+            <th>Nom</th>
+            <th>Capacité</th>
             <th>Equipment</th>
-            <th>Actions</th>
+            <c:choose>
+                <c:when test="${user.role eq 'admin'}">
+                    <th>Actions</th>
+                </c:when>
+                <c:otherwise>
+                </c:otherwise>
+            </c:choose>
         </tr>
         </thead>
         <tbody>
@@ -50,16 +62,25 @@
                 <td>${room.name}</td>
                 <td>${room.capacity}</td>
                 <td>${room.equipment}</td>
-                <td>
-                    <a href="editRoom?id=${room.id}">Modifier</a>
-                    <a href="deleteRoom?id=${room.id}">Supprimer</a>
-                </td>
+
+                <c:choose>
+                <c:when test="${user.role eq 'admin'}">
+                    <td>
+                        <a href="editRoom?id=${room.id}">Modifier</a>
+                        <a href="deleteRoom?id=${room.id}">Supprimer</a>
+                    </td>
+                </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>
+
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <a href="logout">Logout</a>
+    <a href="dashboard">Retour</a>
 </div>
+<a href="logout">Se déconnecter</a>
 
 <!-- Include the message modal -->
 <jsp:include page="messageModal.jsp" />

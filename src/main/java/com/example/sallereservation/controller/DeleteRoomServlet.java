@@ -17,7 +17,7 @@ public class DeleteRoomServlet extends HttpServlet {
         int roomId = Integer.parseInt(request.getParameter("id"));
         try {
             roomService.deleteRoom(roomId);
-            request.getSession().setAttribute("message", "Room deleted successfully.");
+            request.getSession().setAttribute("message", "Salle supprimée avec succès !");
         } catch (IllegalArgumentException e) {
             request.getSession().setAttribute("message", e.getMessage());
         }

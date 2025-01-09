@@ -16,6 +16,12 @@ public class EditUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User loggedUser = (User) request.getSession().getAttribute("user");
+        if (loggedUser == null || !loggedUser.getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/accessDenied");
+            return;
+        }
+
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = userService.getUserById(userId);
 
@@ -25,6 +31,12 @@ public class EditUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User loggedUser = (User) request.getSession().getAttribute("user");
+        if (loggedUser == null || !loggedUser.getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/accessDenied");
+            return;
+        }
+
         int userId = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -38,7 +50,7 @@ public class EditUserServlet extends HttpServlet {
 
         userService.updateUser(user);
 
-        request.getSession().setAttribute("message", "User updated successfully");
+        request.getSession().setAttribute("message", "Utilisateur modifié avec succès !");
         response.sendRedirect("dashboard");
     }
 }

@@ -12,14 +12,14 @@
   <h2>Modifier l'utilisateur</h2>
   <form action="editUser" method="post">
     <input type="hidden" name="id" value="${user.id}">
-    <label for="username">Username:</label>
+    <label for="username">Nom utilisateur :</label>
     <input type="text" id="username" name="username" value="${user.username}" required>
-    <label for="password">Password:</label>
+    <label for="password">Mot de passe:</label>
     <input type="password" id="password" name="password" value="${user.password}" required>
     <label for="role">Role:</label>
     <select id="role" name="role" required>
-      <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
-      <option value="client" ${user.role == 'client' ? 'selected' : ''}>Client</option>
+      <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>admin</option>
+      <option value="client" ${user.role == 'user' ? 'selected' : ''}>user</option>
     </select>
     <button type="submit">Mettre à jour</button>
   </form>

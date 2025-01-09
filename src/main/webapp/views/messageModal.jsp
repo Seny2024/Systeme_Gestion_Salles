@@ -11,7 +11,7 @@
 <body>
 <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
 <div id="messageModal" class="modal" style="display: block;">
-  <p id="modalMessage">Ceci est un message important !</p>
+  <p id="modalMessage">Bienvenue dans cette section !</p>
   <button onclick="closeModal()">Fermer</button>
 </div>
 </body>

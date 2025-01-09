@@ -29,7 +29,7 @@
 
     <h2>Faire une réservation</h2>
     <form action="reservations" method="post" onsubmit="return validateReservationForm()">
-        <label for="roomId">Room:</label>
+        <label for="roomId">Salle :</label>
         <select id="roomId" name="roomId" required>
             <c:forEach var="room" items="${rooms}">
                 <option value="${room.id}">${room.name}</option>
@@ -42,13 +42,13 @@
         <button type="submit">Réserver</button>
     </form>
 
-    <h2>Reservations List</h2>
+    <h2>Liste des reservations</h2>
     <table border="1">
         <thead>
         <tr>
             <th>ID</th>
-            <th>User</th>
-            <th>Room</th>
+            <th>Utilisateur</th>
+            <th>Salle</th>
             <th>Date</th>
             <th>Actions</th>
         </tr>
@@ -61,16 +61,25 @@
                 <td>${reservation.room.name}</td>
                 <td>${reservation.reservationDate}</td>
                 <td>
-                    <a href="editReservation?id=${reservation.id}">Modifier</a>
-                    <a href="deleteReservation?id=${reservation.id}">Supprimer</a>
+                    <c:choose>
+                        <c:when test="${user.role eq 'admin'}">
+                            <a href="editReservation?id=${reservation.id}">Modifier</a>
+                            <a href="deleteReservation?id=${reservation.id}">Supprimer</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="editReservation?id=${reservation.id}">Modifier</a>
+                            <a href="deleteReservation?id=${reservation.id}">Supprimer</a>
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 
-    <a href="logout">Logout</a>
+    <a href="dashboard">Retour</a>
 </div>
+<a href="logout">Se déconnecter</a>
 
 <!-- Include message modal -->
 <jsp:include page="messageModal.jsp" />

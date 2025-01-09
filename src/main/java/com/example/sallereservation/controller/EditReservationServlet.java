@@ -59,7 +59,7 @@ public class EditReservationServlet extends HttpServlet {
 
         reservationService.updateReservation(reservation);
 
-        request.getSession().setAttribute("message", "Reservation updated successfully");
+        request.getSession().setAttribute("message", "Reservation modifiée avec succès !");
         response.sendRedirect("reservations");
     }
 }

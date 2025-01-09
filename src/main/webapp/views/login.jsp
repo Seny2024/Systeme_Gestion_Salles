@@ -17,13 +17,13 @@
 </head>
 <body>
 <div class="login-container">
-    <h2>Login</h2>
-    <form action="login" method="post" onsubmit="return validateLoginForm()">
-        <label for="username">Username:</label>
+    <h2>Se connecter</h2>
+    <form class="custom-form" action="login" method="post" onsubmit="return validateLoginForm()">
+        <label for="username">Nom utilisateur:</label>
         <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
+        <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
+        <button type="submit">Se connecter</button>
     </form>
     <p class="error">${error}</p>
 </div>

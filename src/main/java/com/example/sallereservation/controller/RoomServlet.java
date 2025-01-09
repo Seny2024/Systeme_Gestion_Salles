@@ -32,7 +32,7 @@ public class RoomServlet extends HttpServlet {
         room.setEquipment(equipment);
 
         roomService.saveRoom(room);
-        request.getSession().setAttribute("message", "Room added successfully.");
+        request.getSession().setAttribute("message", "Salle ajoutée avec succès !");
         response.sendRedirect("rooms");
     }
 }

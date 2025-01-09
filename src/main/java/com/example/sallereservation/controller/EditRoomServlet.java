@@ -34,7 +34,7 @@ public class EditRoomServlet extends HttpServlet {
         room.setEquipment(equipment);
 
         roomService.updateRoom(room);
-        request.getSession().setAttribute("message", "Room updated successfully.");
+        request.getSession().setAttribute("message", "Salle modifiée avec succès !.");
         response.sendRedirect("rooms");
     }
 }

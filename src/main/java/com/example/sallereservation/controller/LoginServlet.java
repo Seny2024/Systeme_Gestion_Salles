@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("dashboard");
         } else {
-            request.setAttribute("error", "Invalid username or password");
+            request.setAttribute("error", "Erreur ou mot de passe invalide.");
             request.getRequestDispatcher("/views/login.jsp").forward(request, response);
         }
     }

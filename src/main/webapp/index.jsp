@@ -12,7 +12,7 @@
     <h1>Bienvenue dans l'application de Gestion de Réservation de Salles</h1>
     <br/>
     <ul>
-        <li><a href="login">Se connecter</a></li>
+        <button onclick="window.location.href='login'">Se connecter</button>
     </ul>
 </div>
 </body>

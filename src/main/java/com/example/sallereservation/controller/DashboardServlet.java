@@ -37,5 +37,5 @@ public class DashboardServlet extends HttpServlet {
 
         request.getRequestDispatcher("/views/dashboard.jsp").forward(request, response);
     }
-    
+
 }
