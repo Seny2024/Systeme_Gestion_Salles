@@ -51,8 +51,8 @@
                 <td>${room.capacity}</td>
                 <td>${room.equipment}</td>
                 <td>
-                    <a href="editRoom?id=${room.id}">Edit</a>
-                    <a href="deleteRoom?id=${room.id}">Delete</a>
+                    <a href="editRoom?id=${room.id}">Modifier</a>
+                    <a href="deleteRoom?id=${room.id}">Supprimer</a>
                 </td>
             </tr>
         </c:forEach>

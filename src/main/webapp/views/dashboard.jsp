@@ -52,31 +52,6 @@
         </tbody>
     </table>
 
-    <!--
-    <h3>Reservations List</h3>
-    <table border="1">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>User</th>
-            <th>Room</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="reservation" items="${reservations}">
-            <tr>
-                <td>${reservation.id}</td>
-                <td>${reservation.user.username}</td>
-                <td>${reservation.room.name}</td>
-                <td>${reservation.reservationDate}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-
-     -->
-
     <a href="logout">Logout</a>
 </div>
 </body>

@@ -13,10 +13,19 @@
     <title>Reservations</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/validation.js"></script>
+    <script src="js/modal.js"></script>
 </head>
 <body>
 <div class="reservations-container">
     <p>Total Reservations: ${totalReservations}</p>
+
+    <c:if test="${not empty message}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                showMessage("${message}");
+            });
+        </script>
+    </c:if>
 
     <h2>Faire une réservation</h2>
     <form action="reservations" method="post" onsubmit="return validateReservationForm()">
@@ -41,6 +50,7 @@
             <th>User</th>
             <th>Room</th>
             <th>Date</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -50,6 +60,10 @@
                 <td>${reservation.user.username}</td>
                 <td>${reservation.room.name}</td>
                 <td>${reservation.reservationDate}</td>
+                <td>
+                    <a href="editReservation?id=${reservation.id}">Modifier</a>
+                    <a href="deleteReservation?id=${reservation.id}">Supprimer</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -57,5 +71,9 @@
 
     <a href="logout">Logout</a>
 </div>
+
+<!-- Include message modal -->
+<jsp:include page="messageModal.jsp" />
+
 </body>
 </html>

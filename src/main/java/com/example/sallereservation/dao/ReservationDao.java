@@ -50,4 +50,19 @@ public class ReservationDao {
         session.close();
         return reservations;
     }
+
+    public Reservation getReservationById(int id) {
+        Session session = sessionFactory.openSession();
+        Reservation reservation = session.get(Reservation.class, id);
+        session.close();
+        return reservation;
+    }
+
+    public void updateReservation(Reservation reservation) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(reservation);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

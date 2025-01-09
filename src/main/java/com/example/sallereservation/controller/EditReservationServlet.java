@@ -5,6 +5,7 @@ import com.example.sallereservation.model.Room;
 import com.example.sallereservation.model.User;
 import com.example.sallereservation.service.ReservationService;
 import com.example.sallereservation.service.RoomService;
+import com.example.sallereservation.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,36 +18,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-//@WebServlet("/reservations")
-public class ReservationServlet extends HttpServlet {
+@WebServlet("/editReservation")
+public class EditReservationServlet extends HttpServlet {
     private ReservationService reservationService = new ReservationService();
     private RoomService roomService = new RoomService();
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Vérifiez si l'utilisateur est connecté
-        Object user = request.getSession().getAttribute("user");
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
-
-        // Récupérez toutes les réservations et toutes les salles
-        List<Reservation> reservations = reservationService.getAllReservations();
+        int reservationId = Integer.parseInt(request.getParameter("id"));
+        Reservation reservation = reservationService.getReservationById(reservationId);
         List<Room> rooms = roomService.getAllRooms();
 
-        request.setAttribute("reservations", reservations);
-        request.setAttribute("totalReservations", reservations.size());
+        request.setAttribute("reservation", reservation);
         request.setAttribute("rooms", rooms);
-
-        request.getRequestDispatcher("/views/reservations.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/editReservation.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int reservationId = Integer.parseInt(request.getParameter("id"));
         int roomId = Integer.parseInt(request.getParameter("roomId"));
         String reservationDateStr = request.getParameter("reservationDate");
-        User user = (User) request.getSession().getAttribute("user");
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date reservationDate = null;
@@ -56,17 +49,17 @@ public class ReservationServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        Room room = roomService.getRoomById(roomId);
-        Reservation reservation = new Reservation();
-        reservation.setRoom(room);
-        reservation.setUser(user);
+        Reservation reservation = reservationService.getReservationById(reservationId);
+        reservation.setRoom(roomService.getRoomById(roomId));
         reservation.setReservationDate(reservationDate);
 
-        reservationService.saveReservation(reservation);
+        // Assurez-vous que l'utilisateur est correctement défini
+        User user = (User) request.getSession().getAttribute("user");
+        reservation.setUser(userService.getUserByUsername(user.getUsername()));
 
-        // Ajouter un message de confirmation
-        request.getSession().setAttribute("message", "Réservation ajoutée avec succès pour la salle : " + room.getName());
+        reservationService.updateReservation(reservation);
 
+        request.getSession().setAttribute("message", "Reservation updated successfully");
         response.sendRedirect("reservations");
     }
 }
