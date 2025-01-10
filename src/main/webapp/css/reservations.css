@@ -1,0 +1,109 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+}
+
+/* Formulaire de réservation */
+.reservation-form {
+    margin-bottom: 30px;
+}
+
+.reservation-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.reservation-form select, .reservation-form input, .reservation-form button {
+    width: 98%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.reservation-form button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reservation-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Liste des réservations */
+.reservations-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reservations-list th, .reservations-list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.reservations-list th {
+    background-color: #34495e;
+    color: white;
+}
+
+.reservations-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.reservations-list td a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.reservations-list td a:hover {
+    color: #2980b9;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #3498db;
+}

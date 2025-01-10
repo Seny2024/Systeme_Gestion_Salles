@@ -5,13 +5,13 @@
 <html>
 <head>
   <title>Edit Reservation</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style_edit.css">
   <script src="js/validation.js"></script>
 </head>
 <body>
 <div class="reservations-container">
   <h2>Modifier la réservation</h2>
-  <form action="editReservation" method="post" onsubmit="return validateReservationForm()">
+  <form class="custom-form" action="editReservation" method="post" onsubmit="return validateReservationForm()">
     <input type="hidden" name="id" value="${reservation.id}">
     <label for="roomId">Slle:</label>
     <select id="roomId" name="roomId" required>

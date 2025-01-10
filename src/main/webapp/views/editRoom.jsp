@@ -11,14 +11,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Room</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Modifier la salle</title>
+    <link rel="stylesheet" type="text/css" href="css/style_edit.css">
     <script src="js/validation.js"></script>
 </head>
 <body>
-<div class="edit-room-container">
+<div class="reservations-container">
     <h2>Modifier la salle</h2>
-    <form action="editRoom" method="post" onsubmit="return validateRoomForm()">
+    <form class="custom-form" action="editRoom" method="post" onsubmit="return validateRoomForm()">
         <input type="hidden" id="id" name="id" value="${room.id}">
         <label for="name">Nom:</label>
         <input type="text" id="name" name="name" value="${room.name}" required>
@@ -26,7 +26,7 @@
         <input type="number" id="capacity" name="capacity" value="${room.capacity}" required>
         <label for="equipment">Equipment:</label>
         <input type="text" id="equipment" name="equipment" value="${room.equipment}">
-        <button type="submit">Update Room</button>
+        <button type="submit">Modifier</button>
     </form>
     <a href="rooms">Retour</a>
 </div>

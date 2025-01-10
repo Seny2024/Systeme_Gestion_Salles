@@ -5,12 +5,12 @@
 <html>
 <head>
   <title>Edit User</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style_edit.css">
 </head>
 <body>
-<div class="dashboard-container">
+<div class="reservations-container">
   <h2>Modifier l'utilisateur</h2>
-  <form action="editUser" method="post">
+  <form class="custom-form" action="editUser" method="post">
     <input type="hidden" name="id" value="${user.id}">
     <label for="username">Nom utilisateur :</label>
     <input type="text" id="username" name="username" value="${user.username}" required>

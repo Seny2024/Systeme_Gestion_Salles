@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
     <script src="js/validation.js"></script>
     <script src="js/modal.js"></script>
 </head>
@@ -19,62 +19,67 @@
         </script>
     </c:if>
 
-    <h1>Bienvenue sur le tableau de bord !</h1>
+    <header class="dashboard-header">
+        <h1>Bienvenue sur le tableau de bord</h1>
+    </header>
 
-    <div class="container">
+    <nav class="dashboard-navigation">
         <button onclick="window.location.href='rooms'">Voir les salles</button>
         <button onclick="window.location.href='reservations'">Gérer les réservations</button>
         <button onclick="window.location.href='logout'">Se déconnecter</button>
-    </div>
+    </nav>
 
-    <c:choose>
-        <c:when test="${user.role eq 'admin'}">
-            <h3>Add User</h3>
-            <form action="addUser" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <label for="role">Role:</label>
-                <select id="role" name="role" required>
-                    <option value="admin">admin</option>
-                    <option value="client">user</option>
-                </select>
-                <button type="submit">Ajouter un utilisateur</button>
-            </form>
+    <main class="dashboard-main">
+        <c:choose>
+            <c:when test="${user.role eq 'admin'}">
+                <section class="admin-section">
+                    <h2>Ajouter un utilisateur</h2>
+                    <form class="custom-form" action="addUser" method="post">
+                        <label for="username">Nom d'utilisateur :</label>
+                        <input type="text" id="username" name="username" required>
+                        <label for="password">Mot de passe :</label>
+                        <input type="password" id="password" name="password" required>
+                        <label for="role">Rôle :</label>
+                        <select id="role" name="role" required>
+                            <option value="admin">admin</option>
+                            <option value="user">user</option>
+                        </select>
+                        <button type="submit">Ajouter un utilisateur</button>
+                    </form>
 
-            <h3>Users List</h3>
-            <table border="1">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="user" items="${users}">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.username}</td>
-                        <td>${user.role}</td>
-                        <td>
-                            <a href="editUser?id=${user.id}">Modifier</a>
-                            <a href="deleteUser?id=${user.id}">Supprimer</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>
-
+                    <h2>Liste des utilisateurs</h2>
+                    <table class="user-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Rôle</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="user" items="${users}">
+                            <tr>
+                                <td>${user.id}</td>
+                                <td>${user.username}</td>
+                                <td>${user.role}</td>
+                                <td>
+                                    <a href="editUser?id=${user.id}" class="action-link">Modifier</a>
+                                    <a href="deleteUser?id=${user.id}" class="action-link">Supprimer</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </section>
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+        </c:choose>
+    </main>
 </div>
 
-<!-- Include message modal -->
+<!-- Inclure le modal pour les messages -->
 <jsp:include page="messageModal.jsp" />
 
 </body>

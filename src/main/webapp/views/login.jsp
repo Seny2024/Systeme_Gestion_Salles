@@ -12,13 +12,13 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
     <script src="../js/validation.js"></script>
 </head>
 <body>
-<div class="login-container">
+<div class="custom-form">
     <h2>Se connecter</h2>
-    <form class="custom-form" action="login" method="post" onsubmit="return validateLoginForm()">
+    <form  action="login" method="post" onsubmit="return validateLoginForm()">
         <label for="username">Nom utilisateur:</label>
         <input type="text" id="username" name="username" required>
         <label for="password">Mot de passe :</label>

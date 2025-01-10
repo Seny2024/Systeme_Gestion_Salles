@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Access Denied</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index_accesDenied.css">
 </head>
 <body>
 <div class="dashboard-container">

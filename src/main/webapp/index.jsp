@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Gestion de Réservation de Salles</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index_accesDenied.css">
 </head>
 <body>
 <div class="container">
